@@ -19,8 +19,15 @@
 class GameObject
 {
   public:
+    // Details:
+    //  Constructs a game object with the given name. components must be added using Add().
+    //
+    // Inputs:
+    // -param1 
+    //   Description of parameter
+    // -param2
+    //   Description of parameter
     GameObject(const std::string& name);
-    void Update(float dt);
     void Render();
 
     template <typename T>
@@ -37,17 +44,7 @@ class GameObject
 
 };
 
-// Details:
-//  Important info that is not made immediately clear from the function name and parameters.
-//
-// Inputs:
-// -param1 
-//   Description of parameter
-// -param2
-//   Description of parameter
-//         
-// Output:
-//   Useful information about the return value, and/or whatever else the function did.
+
 
 
 #endif

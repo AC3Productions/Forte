@@ -168,6 +168,7 @@ echo xcopy "$(SolutionDir)Assets" "$(OutDir)Assets\" /Y /S</Command>
     <ClCompile Include="Source\AnimationSystem.cpp" />
     <ClCompile Include="source\Engine.cpp" />
     <ClCompile Include="Source\GameObject.cpp" />
+    <ClCompile Include="Source\GameObjectSystem.cpp" />
     <ClCompile Include="Source\GameStateSystem.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="Source\PhysicsComponent.cpp" />
@@ -178,8 +179,6 @@ echo xcopy "$(SolutionDir)Assets" "$(OutDir)Assets\" /Y /S</Command>
     <ClCompile Include="source\trace.cpp" />
     <ClCompile Include="Source\TransformComponent.cpp" />
     <ClCompile Include="Source\TransformSystem.cpp" />
-    <ClCompile Include="stub.cpp" />
-    <ClCompile Include="StubSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\AnimationComponent.h" />
@@ -188,6 +187,7 @@ echo xcopy "$(SolutionDir)Assets" "$(OutDir)Assets\" /Y /S</Command>
     <ClInclude Include="include\Engine.h" />
     <ClInclude Include="include\forte.h" />
     <ClInclude Include="Include\GameObject.h" />
+    <ClInclude Include="Include\GameObjectSystem.h" />
     <ClInclude Include="Include\GameStateSystem.h" />
     <ClInclude Include="Include\PhysicsComponent.h" />
     <ClInclude Include="Include\PhysicsSystem.h" />
@@ -198,8 +198,6 @@ echo xcopy "$(SolutionDir)Assets" "$(OutDir)Assets\" /Y /S</Command>
     <ClInclude Include="include\trace.h" />
     <ClInclude Include="Include\TransformComponent.h" />
     <ClInclude Include="Include\TransformSystem.h" />
-    <ClInclude Include="stub.h" />
-    <ClInclude Include="StubSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

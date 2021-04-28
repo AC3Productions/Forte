@@ -16,11 +16,11 @@
     <Filter Include="Engine\Game States">
       <UniqueIdentifier>{3d0bc5dd-b36b-41be-9d88-12335c769a9d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Stubs">
-      <UniqueIdentifier>{b2f1297d-fafd-48d4-aaa4-a93702f6a87c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\ECS Architecture">
       <UniqueIdentifier>{d1eaf6f4-c87f-4ccc-b046-8f26a2b1fbea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Game Objects">
+      <UniqueIdentifier>{29001677-123e-4a50-b115-380d951c2ccc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -52,15 +52,6 @@
     <ClCompile Include="Source\TextureSource.cpp">
       <Filter>Engine\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="stub.cpp">
-      <Filter>Stubs</Filter>
-    </ClCompile>
-    <ClCompile Include="StubSystem.cpp">
-      <Filter>Stubs</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameObject.cpp">
-      <Filter>Engine\ECS Architecture</Filter>
-    </ClCompile>
     <ClCompile Include="Source\TransformSystem.cpp">
       <Filter>Engine\Transform</Filter>
     </ClCompile>
@@ -69,6 +60,12 @@
     </ClCompile>
     <ClCompile Include="Source\AnimationSystem.cpp">
       <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObject.cpp">
+      <Filter>Engine\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObjectSystem.cpp">
+      <Filter>Engine\Game Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -99,19 +96,10 @@
     <ClInclude Include="Include\AnimationComponent.h">
       <Filter>Engine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="stub.h">
-      <Filter>Stubs</Filter>
-    </ClInclude>
-    <ClInclude Include="StubSystem.h">
-      <Filter>Stubs</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Component.h">
       <Filter>Engine\ECS Architecture</Filter>
     </ClInclude>
     <ClInclude Include="include\System.h">
-      <Filter>Engine\ECS Architecture</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\GameObject.h">
       <Filter>Engine\ECS Architecture</Filter>
     </ClInclude>
     <ClInclude Include="include\forte.h">
@@ -125,6 +113,12 @@
     </ClInclude>
     <ClInclude Include="Include\AnimationSystem.h">
       <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\GameObject.h">
+      <Filter>Engine\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\GameObjectSystem.h">
+      <Filter>Engine\Game Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

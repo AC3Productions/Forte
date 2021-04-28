@@ -16,14 +16,9 @@ GameObject::GameObject(const std::string& name) : m_name(name)
   }
 }
 
-void GameObject::Update(float dt)
-{
-  UNREF_PARAM(dt);
-}
-
 void GameObject::Render()
 {
-  Get(FSprite)->Render();
+  //Get(FSprite)->Render();
 }
 
 void GameObject::Add(FComponent* component)

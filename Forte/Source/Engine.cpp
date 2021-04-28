@@ -115,7 +115,7 @@ void Engine::Update()
     (*it)->Update(dt);
   }
 
-  obj->Update(dt);
+  //obj->Update(dt);
 
 
 }
@@ -125,12 +125,16 @@ void Engine::Render()
   BeginDrawing();
   ClearBackground(RAYWHITE);
 
+  // Render all systems
+  for (auto it : m_systems)
+  {
+    it->Render();
+  }
 
-
-  obj->Render();
-
-  DrawText("gaming", 200, 450, 40, BLACK);
-
+  /* FPS Counter (for debugging) */
+  // Small rectangle around text (white, transparent)
+  DrawRectangle(0, 0, 85, 25, Color{ 255, 255, 255, 150 });
+  // FPS counter and label
   std::string fps("FPS: ");
   fps += std::to_string(GetFPS());
   DrawText(fps.c_str(), 5, 5, 20, BLACK);
