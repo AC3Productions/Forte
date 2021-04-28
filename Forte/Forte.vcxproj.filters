@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{3c73631f-c1c2-4a7f-a6c9-4b6804ef32eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Physics">
+      <UniqueIdentifier>{356cd4ce-4c1e-4cf8-a75e-300d0dda5d9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Transform">
+      <UniqueIdentifier>{5af5ef15-4af6-44d8-a238-06a30b306e9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Graphics">
+      <UniqueIdentifier>{2f2d6572-fe17-4f40-a0fc-af80864eefac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Game States">
+      <UniqueIdentifier>{3d0bc5dd-b36b-41be-9d88-12335c769a9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stubs">
+      <UniqueIdentifier>{b2f1297d-fafd-48d4-aaa4-a93702f6a87c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\ECS Architecture">
+      <UniqueIdentifier>{d1eaf6f4-c87f-4ccc-b046-8f26a2b1fbea}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\Engine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\trace.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="Source\PhysicsComponent.cpp">
+      <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PhysicsSystem.cpp">
+      <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TransformComponent.cpp">
+      <Filter>Engine\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SpriteComponent.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateSystem.cpp">
+      <Filter>Engine\Game States</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AnimationComponent.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TextureSource.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="stub.cpp">
+      <Filter>Stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="StubSystem.cpp">
+      <Filter>Stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObject.cpp">
+      <Filter>Engine\ECS Architecture</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TransformSystem.cpp">
+      <Filter>Engine\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SpriteSystem.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AnimationSystem.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\trace.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Engine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\PhysicsComponent.h">
+      <Filter>Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\PhysicsSystem.h">
+      <Filter>Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TransformComponent.h">
+      <Filter>Engine\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\SpriteComponent.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TextureSource.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\GameStateSystem.h">
+      <Filter>Engine\Game States</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\AnimationComponent.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="stub.h">
+      <Filter>Stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="StubSystem.h">
+      <Filter>Stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Component.h">
+      <Filter>Engine\ECS Architecture</Filter>
+    </ClInclude>
+    <ClInclude Include="include\System.h">
+      <Filter>Engine\ECS Architecture</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\GameObject.h">
+      <Filter>Engine\ECS Architecture</Filter>
+    </ClInclude>
+    <ClInclude Include="include\forte.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TransformSystem.h">
+      <Filter>Engine\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\SpriteSystem.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\AnimationSystem.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
