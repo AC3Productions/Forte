@@ -59,12 +59,16 @@ void SpriteSystem::Render()
   // Render all sprites
   for (auto it : m_components)
   {
-    it->Render();
+    if (it && it->GetParent())
+      it->Render();
   }
 
 }
 
 SpriteSystem::~SpriteSystem()
 {
-
+  for (auto it : m_components)
+  {
+    delete it;
+  }
 }

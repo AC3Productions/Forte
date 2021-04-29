@@ -4,13 +4,13 @@
 // 
 // info:
 //   Implementation of the Engine class
-#include <forte.h>
 #include <Engine.h>
 
 #include <PhysicsSystem.h>
 #include <TransformSystem.h>
 #include <SpriteSystem.h>
 #include <AnimationSystem.h>
+#include <GameObjectSystem.h>
 
 #pragma region temp
 static const int SCREEN_WIDTH = 1600;
@@ -38,17 +38,18 @@ void Engine::Init()
   m_systems.push_back(AnimationSystem::Instance());
   m_systems.push_back(PhysicsSystem::Instance());
 
-  //Initialize systems (order-independent)
+  /* Initialize systems (order-independent) */
   m_systems.push_back(TransformSystem::Instance());
   m_systems.push_back(SpriteSystem::Instance());
+  m_systems.push_back(GameObjectSystem::Instance());
 
 
 #pragma region temp
 
   // This is more or less how an object will be generated.
-  //The next step is to load them from files.
+  // The next step is to load them from files.
 
-  obj = new GameObject("test object");
+  obj = GameObjectSystem::Instance()->CreateGameObject("test object");
   
   FPhysics* physics = PhysicsSystem::Instance()->CreateComponent();
   obj->Add(physics);
@@ -70,6 +71,8 @@ void Engine::Init()
   animation->SetLooping(true);
 
   obj->Add(animation);
+
+  // This will either happen by default or get called in a behavior script.
   animation->Start(); 
   
 #pragma endregion
@@ -87,7 +90,6 @@ void Engine::Update()
     m_is_running = false;
     return;
   }
-
 
 #pragma region temp
   RVec2 vel;
@@ -114,10 +116,6 @@ void Engine::Update()
   {
     (*it)->Update(dt);
   }
-
-  //obj->Update(dt);
-
-
 }
 
 void Engine::Render()
@@ -146,7 +144,11 @@ void Engine::ShutDown()
 {
   trace.info << "Shutting down engine...";
 
-  delete obj;
+  for (auto it : m_systems)
+  {
+    delete it;
+  }
+
   delete texture;
 }
 

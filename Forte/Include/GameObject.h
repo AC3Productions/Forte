@@ -22,13 +22,12 @@ class GameObject
     // Details:
     //  Constructs a game object with the given name. components must be added using Add().
     //
-    // Inputs:
-    // -param1 
-    //   Description of parameter
-    // -param2
-    //   Description of parameter
+    // Input:
+    // -name 
+    //   The name of the object.
     GameObject(const std::string& name);
     void Render();
+    ~GameObject();
 
     template <typename T>
     T* GetComponent(FComponent::Type type)
@@ -38,9 +37,13 @@ class GameObject
 
     void Add(FComponent* component);
 
+    bool IsPersistent() { return m_persistent; }
+    const std::string& GetName() { return m_name; }
+
   private:
     std::string m_name;
     FComponent* m_components[(int)FComponent::Type::CT_FCount];
+    bool m_persistent; // persistent game objects are not destroyed between scenes
 
 };
 

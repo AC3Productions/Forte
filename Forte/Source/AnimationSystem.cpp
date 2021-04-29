@@ -52,7 +52,7 @@ void AnimationSystem::Update(float dt)
 {
   for (auto it : m_components)
   {
-    if (it)
+    if (it && it->GetParent())
       it->Update(dt);
   }
 }
@@ -60,5 +60,8 @@ void AnimationSystem::Update(float dt)
 
 AnimationSystem::~AnimationSystem()
 {
-
+  for (auto it : m_components)
+  {
+    delete it;
+  }
 }

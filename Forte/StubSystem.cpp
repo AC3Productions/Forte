@@ -54,5 +54,8 @@ void StubSystem::Update(float dt)
 
 StubSystem::~StubSystem()
 {
-
+  //for (auto it : m_components)
+  //{
+  //  delete it;
+  //}
 }

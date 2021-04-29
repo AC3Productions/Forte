@@ -5,10 +5,9 @@
 // info:
 //   Description of the purpose of the file goes here.
 #pragma once
-#include <stub.h>
 #include <GameObject.h>
 
-GameObject::GameObject(const std::string& name) : m_name(name)
+GameObject::GameObject(const std::string& name) : m_name(name), m_persistent(false)
 {
   for (int i = 0; i < (int)FComponent::Type::CT_FCount; ++i)
   {
@@ -16,9 +15,22 @@ GameObject::GameObject(const std::string& name) : m_name(name)
   }
 }
 
-void GameObject::Render()
+GameObject::~GameObject()
 {
-  //Get(FSprite)->Render();
+  // Remove the parent from all components (which disables them).
+  // Technically, the more memory-efficient solution is to 
+  // Call DestroyComponent() on each system the game object
+  // has, but that's 1) ugly, 2) requires updating this function
+  // when I add systems/components, and 3) is quite slow with
+  // lots of objects loaded (since each DestroyComponent() call
+  // checks the component lists linearly to remove them).
+  // This isn't a particularly great solution either imo, will 
+  // need to come back to this.
+  for (auto it : m_components)
+  {
+    it->SetParent(nullptr);
+  }
+
 }
 
 void GameObject::Add(FComponent* component)

@@ -20,10 +20,16 @@ class GameObjectSystem : public FSystem
     void Update(float dt) override;
     ~GameObjectSystem();
 
-    
     GameObject* CreateGameObject(const std::string& name);
+
     GameObject* FindGameObject(const std::string& name);
     GameObject* FindGameObject(int id);
+
+    // Note: despite the name, this function does not
+    // destroy persistent game objects. That will only
+    // happen if the GameObjectSystem is destroyed 
+    // ie. the destructor is called.
+    void DestroyAllObjects();
 
 
   private:

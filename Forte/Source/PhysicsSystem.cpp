@@ -56,7 +56,7 @@ void PhysicsSystem::Update(float dt)
   // Update all the physics components
   for (auto it : m_components)
   {
-    if (it)
+    if (it && it->GetParent())
     {
       it->Update(dt);
     }
