@@ -12,6 +12,10 @@
 #include <AnimationSystem.h>
 #include <GameObjectSystem.h>
 
+#include <fstream>
+#include <json.hpp>
+using JSON = nlohmann::json;
+
 #pragma region temp
 static const int SCREEN_WIDTH = 1600;
 static const int SCREEN_HEIGHT = 900;
@@ -51,14 +55,32 @@ void Engine::Init()
 
   obj = GameObjectSystem::Instance()->CreateGameObject("test object");
   
-  FPhysics* physics = PhysicsSystem::Instance()->CreateComponent();
-  obj->Add(physics);
+  JSON data;
+  std::ifstream file("Assets/test_obj.json");
+  if (file.is_open())
+    file >> data;
 
-  FTransform* transform = TransformSystem::Instance()->CreateComponent();
-  transform->SetPosition(RVec2(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f));
-  transform->SetRotation(0.0f);
-  transform->SetScale(RVec2(3, 3));
-  obj->Add(transform); 
+  if (data.contains("physics"))
+  {
+    if (data.at("physics"))
+    {
+      FPhysics* physics = PhysicsSystem::Instance()->CreateComponent();
+      obj->Add(physics);
+    }
+  }
+
+  
+
+  if (data.contains("transform"))
+  {
+    JSON tform_json = data.at("transform");
+    FTransform* transform = TransformSystem::Instance()->CreateComponent();
+    transform->SetPosition(RVec2(SCREEN_WIDTH * (float)tform_json["position"][0], SCREEN_HEIGHT * (float)tform_json["position"][1]));
+    transform->SetRotation(tform_json["rotation"]);
+    transform->SetScale(RVec2(tform_json["scale"][0], tform_json["scale"][1]));
+    obj->Add(transform);
+  }
+
 
   FSprite* sprite = SpriteSystem::Instance()->CreateComponent();
   texture = new TextureSource("Assets/gem_spin.png", 3, 5);

@@ -16,11 +16,11 @@
     <Filter Include="Engine\Game States">
       <UniqueIdentifier>{3d0bc5dd-b36b-41be-9d88-12335c769a9d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\ECS Architecture">
-      <UniqueIdentifier>{d1eaf6f4-c87f-4ccc-b046-8f26a2b1fbea}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Game Objects">
       <UniqueIdentifier>{29001677-123e-4a50-b115-380d951c2ccc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component">
+      <UniqueIdentifier>{d1eaf6f4-c87f-4ccc-b046-8f26a2b1fbea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -97,10 +97,10 @@
       <Filter>Engine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Include\Component.h">
-      <Filter>Engine\ECS Architecture</Filter>
+      <Filter>Engine\Component</Filter>
     </ClInclude>
     <ClInclude Include="include\System.h">
-      <Filter>Engine\ECS Architecture</Filter>
+      <Filter>Engine\Component</Filter>
     </ClInclude>
     <ClInclude Include="include\forte.h">
       <Filter>Engine</Filter>

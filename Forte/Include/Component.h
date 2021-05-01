@@ -9,6 +9,8 @@
 #define COMPONENT_H
 
 #include <forte.h>
+#include <json.hpp>
+using JSON = nlohmann::json;
 
 class GameObject;
 
@@ -40,6 +42,8 @@ class FComponent
 
     GameObject* GetParent() { return m_parent; }
     void SetParent(GameObject* parent) { m_parent = parent; }
+
+    virtual void Deserialize(const JSON& json) { UNREF_PARAM(json); }
 
   protected:
     Type m_type;

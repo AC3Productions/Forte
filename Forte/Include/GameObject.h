@@ -26,7 +26,6 @@ class GameObject
     // -name 
     //   The name of the object.
     GameObject(const std::string& name);
-    void Render();
     ~GameObject();
 
     template <typename T>
@@ -34,6 +33,8 @@ class GameObject
     {
       return static_cast<T*>(m_components[static_cast<int>(type)]);
     }
+
+    void Deserialize(const JSON& json);
 
     void Add(FComponent* component);
 

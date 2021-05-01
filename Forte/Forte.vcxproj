@@ -138,14 +138,16 @@ xcopy "$(SolutionDir)Assets" "$(OutDir)Assets\" /Y /S</Command>
       <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)Include;$(SolutionDir)..\Libraries\raylib\src;$(SolutionDir)..\Libraries\raylib-cpp\include;$(SolutionDir)..\Libraries\json\single_include\nlohmann;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GRAPHICS_API_OPENGL_33;PLATFORM_DESKTOP;</PreprocessorDefinitions>
       <CompileAs>Default</CompileAs>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)..\Libraries\raylib\lib\x64\$(Configuration).DLL;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>raylib.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>echo xcopy "$(SolutionDir)packages\raylib\lib\$(Platform)\$(Configuration).DLL\raylib.dll" "$(OutDir)" /Y
-echo xcopy "$(SolutionDir)Assets" "$(OutDir)Assets\" /Y /S</Command>
+      <Command>xcopy "$(SolutionDir)packages\raylib\lib\$(Platform)\$(Configuration).DLL\raylib.dll" "$(OutDir)" /Y
+xcopy "$(SolutionDir)Assets" "$(OutDir)Assets" /Y /S /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -153,14 +155,16 @@ echo xcopy "$(SolutionDir)Assets" "$(OutDir)Assets\" /Y /S</Command>
       <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)Include;$(SolutionDir)..\Libraries\raylib\src;$(SolutionDir)..\Libraries\raylib-cpp\include;$(SolutionDir)..\Libraries\json\single_include\nlohmann;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GRAPHICS_API_OPENGL_33;PLATFORM_DESKTOP;</PreprocessorDefinitions>
       <CompileAs>Default</CompileAs>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)..\Libraries\raylib\lib\x64\$(Configuration).DLL;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>raylib.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>echo xcopy "$(SolutionDir)packages\raylib\lib\$(Platform)\$(Configuration).DLL\raylib.dll" "$(OutDir)" /Y
-echo xcopy "$(SolutionDir)Assets" "$(OutDir)Assets\" /Y /S</Command>
+      <Command>xcopy "$(SolutionDir)packages\raylib\lib\$(Platform)\$(Configuration).DLL\raylib.dll" "$(OutDir)" /Y
+xcopy "$(SolutionDir)Assets" "$(OutDir)Assets" /Y /S /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -59,7 +59,7 @@ void FAnimation::AdvanceFrame()
   int index = sprite->GetFrame() + 1;
 
   // End of animation
-  if (index >= m_frame_count)
+  if ((unsigned)index >= m_frame_count)
   {
     // Set back to beginning of animation
     if (m_loop)

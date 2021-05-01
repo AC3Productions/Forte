@@ -1,0 +1,16 @@
+{
+  "transform": {
+    "position": [ 0.5, 0.5 ],
+    "rotation": 0,
+    "scale": [ 3, 3 ]
+  },
+  "physics": true,
+  "sprite": {
+    "texture": "gem_spin.json"
+  },
+  "animation": {
+    "framecount": 12,
+    "framerate": 12.0,
+    "looping": true
+  }
+}
