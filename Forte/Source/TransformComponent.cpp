@@ -6,9 +6,23 @@
 //   Description of the purpose of the file goes here.
 #pragma once
 #include <TransformComponent.h>
+#include <TransformSystem.h>
 
 // Brief explanation of function. If this function is not explained in the header file,
 // it should have a full description block.
+
+FTransform* FTransform::Clone()
+{
+
+  FTransform* new_transform = TransformSystem::Instance()->CreateComponent();
+  // no allocated data, so shallow copy works fine
+  if (new_transform)
+  {
+    *new_transform = *this;
+  }
+  return new_transform;
+
+}
 
 void FTransform::SetPosition(const RVec2& pos)
 {

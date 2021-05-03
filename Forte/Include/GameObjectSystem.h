@@ -9,7 +9,12 @@
 
 #include <forte.h>
 #include <System.h>
-#include <GameObject.h>
+#include <map>
+#include <json.hpp>
+using JSON = nlohmann::json;
+
+class GameObject;
+class GameObjectFactory;
 
 class GameObjectSystem : public FSystem
 {
@@ -20,15 +25,29 @@ class GameObjectSystem : public FSystem
     void Update(float dt) override;
     ~GameObjectSystem();
 
+    // Creates an empty GameObject and gives it a name.
     GameObject* CreateGameObject(const std::string& name);
+
+    // Details:
+    //  Creates a GameObject based on the given template.
+    //
+    // Inputs:
+    // -filename 
+    //   The name of the Template file. Do NOT include the path OR file extension.
+    //   Example: "Assets/myobj.json" should be passed in as "myobj".
+    //
+    // Output:
+    //   If that template exists, returns a copy of it. Otherwise,
+    //   returns nullptr.
+    GameObject* CreateFromTemplate(const std::string& template_name);
 
     GameObject* FindGameObject(const std::string& name);
     GameObject* FindGameObject(int id);
 
     // Note: despite the name, this function does not
-    // destroy persistent game objects. That will only
-    // happen if the GameObjectSystem is destroyed 
-    // ie. the destructor is called.
+    // destroy all game objects--only non-persistent ones.
+    // Those only get destroyed when the GameObjectSystem's 
+    // destructor is called.
     void DestroyAllObjects();
 
 
@@ -39,9 +58,16 @@ class GameObjectSystem : public FSystem
     GameObjectSystem();
     static GameObjectSystem* m_instance;
 
+    void AddToActiveObjects(GameObject* obj);
+
+    // Takes the given JSON data and applies it to the given object.
+    void DeserializeGameObject(GameObject* obj, const JSON& data);
+
     // Every game object has an internal id
     std::map<int, GameObject*> m_objects;
     int id_counter = 0;
+
+    std::map<std::string, GameObject*> m_templates;
 };
 
 #endif

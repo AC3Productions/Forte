@@ -6,6 +6,7 @@
 //   Description of the purpose of the file goes here.
 #pragma once
 #include <PhysicsComponent.h>
+#include <PhysicsSystem.h>
 #include <GameObject.h>
 #include <TransformComponent.h>
 
@@ -28,4 +29,17 @@ void FPhysics::Update(float dt)
   pos += m_velocity * dt;
 
   transform->SetPosition(pos);
+}
+
+FPhysics* FPhysics::Clone()
+{
+
+  FPhysics* new_phy = PhysicsSystem::Instance()->CreateComponent();
+  // no allocated data, so shallow copy works fine
+  if (new_phy)
+  {
+    *new_phy = *this;
+  }
+  return new_phy;
+
 }

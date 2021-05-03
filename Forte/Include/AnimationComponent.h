@@ -24,7 +24,17 @@ class FAnimation : public FComponent
     void SetFrameRate(float fps) { m_frame_duration = 1.0f / fps; }
     void SetLooping(bool looping) { m_loop = looping; }
 
+    FAnimation* Clone() override;
+
   private:
+    /* 
+       NOTE TO SELF - IF PRIVATE MEMBERS GET UPDATED, THE FOLLOWING MEMBER
+       FUNCTIONS MUST BE UPDATED AS WELL:
+         -Constructor
+         -Clone
+         -Destructor, if memory allocation is involved
+    */
+
     unsigned m_frame_count;
     // Amount of time to display each frame for.
     // Should be serialized as a frame rate (fps)

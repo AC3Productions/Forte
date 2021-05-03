@@ -7,6 +7,7 @@
 #pragma once
 #include <SpriteSystem.h>
 #include <GameObject.h>
+#include <SpriteComponent.h>
 
 SpriteSystem* SpriteSystem::m_instance = nullptr;
 
@@ -59,8 +60,14 @@ void SpriteSystem::Render()
   // Render all sprites
   for (auto it : m_components)
   {
-    if (it && it->GetParent())
-      it->Render();
+    if (it)
+    {
+      GameObject* obj = it->GetParent();
+      if (obj && obj->IsEnabled())
+      {
+        it->Render();
+      }
+    }
   }
 
 }

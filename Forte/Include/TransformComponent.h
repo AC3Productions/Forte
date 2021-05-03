@@ -45,6 +45,8 @@ class FTransform : public FComponent
   {
   }
 
+  FTransform* Clone();
+
   // Details:
   //  Sets the World-space coordinates of the transform.
   void SetPosition(const RVec2& pos);
@@ -72,9 +74,9 @@ class FTransform : public FComponent
   const RVec2& GetScale() const { return m_scale; }
 
   private:
-    RVec2 m_pos;
-    float m_rot; // Stored in radians
-    RVec2 m_scale;
+    RVec2 m_pos;   // Position in world-space
+    float m_rot;   // Stored in radians
+    RVec2 m_scale; // Scale in world-space
 };
 
 

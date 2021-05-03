@@ -6,6 +6,7 @@
 //   Description of the purpose of the file goes here.
 #pragma once
 #include <TransformSystem.h>
+#include <TransformComponent.h>
 
 TransformSystem* TransformSystem::m_instance = nullptr;
 

@@ -8,6 +8,7 @@
 #include <AnimationComponent.h>
 #include <GameObject.h>
 #include <SpriteComponent.h>
+#include <AnimationSystem.h>
 
 FAnimation::FAnimation(unsigned frame_count, float frame_rate, bool looping) : FComponent(FComponent::Type::CT_FAnimation),
                                                                                m_frame_count(frame_count), 
@@ -27,7 +28,7 @@ void FAnimation::Start()
     sprite->SetFrame(0);
   else
   {
-    trace.error << "Tried to play an animation on an object which has no texture.";
+    trace.error.Log("Tried to play an animation on an object which has no texture.");
   }
 }
 
@@ -45,6 +46,17 @@ void FAnimation::Update(float dt)
     }
   }
 
+}
+
+FAnimation* FAnimation::Clone()
+{
+  FAnimation* new_anim = AnimationSystem::Instance()->CreateComponent();
+  // no allocated data, so shallow copy works fine
+  if (new_anim)
+  {
+    *new_anim = *this;
+  }
+  return new_anim;
 }
 
 void FAnimation::AdvanceFrame()

@@ -21,7 +21,6 @@ static const int SCREEN_WIDTH = 1600;
 static const int SCREEN_HEIGHT = 900;
 
 GameObject* obj = nullptr;
-TextureSource* texture = nullptr;
 
 #pragma endregion
 
@@ -33,7 +32,7 @@ void Engine::Init()
 {
 
   trace_log = TraceLogger::Instance();
-  trace.info << "Trace Log Initialized.";
+  trace.info.Log("Trace Log Initialized.");
 
   m_window.Init(SCREEN_WIDTH, SCREEN_HEIGHT, "Forte");
   SetTargetFPS(60);
@@ -49,63 +48,18 @@ void Engine::Init()
 
 
 #pragma region temp
-
   // This is more or less how an object will be generated.
-  // The next step is to load them from files.
-
-  obj = GameObjectSystem::Instance()->CreateGameObject("test object");
-  
-  JSON data;
-  std::ifstream file("Assets/test_obj.json");
-  if (file.is_open())
-    file >> data;
-
-  if (data.contains("physics"))
-  {
-    if (data.at("physics"))
-    {
-      FPhysics* physics = PhysicsSystem::Instance()->CreateComponent();
-      obj->Add(physics);
-    }
-  }
-
-  
-
-  if (data.contains("transform"))
-  {
-    JSON tform_json = data.at("transform");
-    FTransform* transform = TransformSystem::Instance()->CreateComponent();
-    transform->SetPosition(RVec2(SCREEN_WIDTH * (float)tform_json["position"][0], SCREEN_HEIGHT * (float)tform_json["position"][1]));
-    transform->SetRotation(tform_json["rotation"]);
-    transform->SetScale(RVec2(tform_json["scale"][0], tform_json["scale"][1]));
-    obj->Add(transform);
-  }
-
-
-  FSprite* sprite = SpriteSystem::Instance()->CreateComponent();
-  texture = new TextureSource("Assets/gem_spin.png", 3, 5);
-  sprite->SetTextureSource(texture);
-  obj->Add(sprite);
-  
-  FAnimation* animation = AnimationSystem::Instance()->CreateComponent();
-  animation->SetFrameCount(12);
-  animation->SetFrameRate(12.0f);
-  animation->SetLooping(true);
-
-  obj->Add(animation);
-
-  // This will either happen by default or get called in a behavior script.
-  animation->Start(); 
-  
+  obj = GameObjectSystem::Instance()->CreateFromTemplate("test_obj");
+  obj->Get(FAnimation)->Start();
 #pragma endregion
 
-  trace.info << "Engine Fully Initialized.";
+  trace.info.Log("Engine Fully Initialized.");
 }
 
 
 void Engine::Update()
 {
-  trace.verbose << "Engine: Update";
+  trace.verbose.Log("Engine: Update");
 
   if (m_window.ShouldClose())
   {
@@ -164,14 +118,13 @@ void Engine::Render()
 
 void Engine::ShutDown()
 {
-  trace.info << "Shutting down engine...";
+  trace.info.Log("Shutting down engine...");
 
   for (auto it : m_systems)
   {
     delete it;
   }
 
-  delete texture;
 }
 
 

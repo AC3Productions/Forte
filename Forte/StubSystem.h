@@ -10,6 +10,8 @@
 #include <forte.h>
 #include <System.h>
 
+class FStub;
+
 class StubSystem : public FSystem
 {
   public:
@@ -22,8 +24,8 @@ class StubSystem : public FSystem
     // Optional: If this system manages a component,
     // then it should be responsible for creating and
     // destroying them. Not all systems do this.
-    //   FStub* CreateComponent();
-    //   void DestroyComponent(FStub*& stub);
+    FStub* CreateComponent();
+    void DestroyComponent(FStub*& stub);
 
   private:
     // These are for the singleton pattern.
@@ -33,7 +35,7 @@ class StubSystem : public FSystem
     static StubSystem* m_instance;
 
     // // If managing components, store a vector of components
-    //std::vector<FStub*> m_components;
+    std::vector<FStub*> m_components;
 };
 
 #endif

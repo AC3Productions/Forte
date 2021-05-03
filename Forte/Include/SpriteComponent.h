@@ -26,6 +26,8 @@ class FSprite : public FComponent
     void SetTextureSource(TextureSource* texture);
     TextureSource* GetTextureSource() { return m_texture; }
 
+    FSprite* Clone();
+
     void Render();
 
 
@@ -33,7 +35,7 @@ class FSprite : public FComponent
     float m_alpha;
     int m_frame;
     TextureSource* m_texture; 
-    const char* m_text;
+    std::string m_text;
 
 };
 

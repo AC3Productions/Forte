@@ -34,17 +34,22 @@ class GameObject
       return static_cast<T*>(m_components[static_cast<int>(type)]);
     }
 
-    void Deserialize(const JSON& json);
-
     void Add(FComponent* component);
 
+    GameObject* Clone();
+
     bool IsPersistent() { return m_persistent; }
-    const std::string& GetName() { return m_name; }
+
+    void SetEnabled(bool enabled) { m_enabled = enabled; }
+    bool IsEnabled() { return m_enabled; }
+    
+    const std::string& GetName() { return m_name; }    
 
   private:
     std::string m_name;
     FComponent* m_components[(int)FComponent::Type::CT_FCount];
-    bool m_persistent; // persistent game objects are not destroyed between scenes
+    bool m_persistent; // persistent game objects are not destroyed between game states
+    bool m_enabled;
 
 };
 

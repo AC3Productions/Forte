@@ -46,3 +46,23 @@ void GameObject::Add(FComponent* component)
   }
 
 }
+
+GameObject* GameObject::Clone()
+{
+  GameObject* new_clone = new GameObject(m_name);
+
+  if (new_clone)
+  {
+    // Copy all the components
+    for (int i = 0; i < static_cast<int>(FComponent::Type::CT_FCount); ++i)
+    {
+      if (m_components[i])
+      {
+        new_clone->Add(m_components[i]->Clone());
+      }
+    }
+  }
+
+  return new_clone;
+
+}

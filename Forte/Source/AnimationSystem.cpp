@@ -6,6 +6,8 @@
 //   Description of the purpose of the file goes here.
 #pragma once
 #include <AnimationSystem.h>
+#include <AnimationComponent.h>
+#include <GameObject.h>
 
 AnimationSystem* AnimationSystem::m_instance = nullptr;
 
@@ -52,8 +54,11 @@ void AnimationSystem::Update(float dt)
 {
   for (auto it : m_components)
   {
-    if (it && it->GetParent())
+    GameObject* obj = it->GetParent();
+    if (obj && obj->IsEnabled())
+    {
       it->Update(dt);
+    }
   }
 }
 

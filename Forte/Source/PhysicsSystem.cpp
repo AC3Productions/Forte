@@ -7,6 +7,7 @@
 #pragma once
 #include <forte.h>
 #include <PhysicsSystem.h>
+#include <PhysicsComponent.h>
 #include <TransformComponent.h>
 
 PhysicsSystem* PhysicsSystem::m_instance = nullptr;
@@ -56,7 +57,8 @@ void PhysicsSystem::Update(float dt)
   // Update all the physics components
   for (auto it : m_components)
   {
-    if (it && it->GetParent())
+    GameObject* obj = it->GetParent();
+    if (obj && obj->IsEnabled())
     {
       it->Update(dt);
     }

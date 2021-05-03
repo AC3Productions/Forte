@@ -43,7 +43,10 @@ class FComponent
     GameObject* GetParent() { return m_parent; }
     void SetParent(GameObject* parent) { m_parent = parent; }
 
+    virtual void Update(float dt) { UNREF_PARAM(dt); }
+    virtual void Render() {}
     virtual void Deserialize(const JSON& json) { UNREF_PARAM(json); }
+    virtual FComponent* Clone() = 0;
 
   protected:
     Type m_type;

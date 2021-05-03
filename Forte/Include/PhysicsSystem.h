@@ -9,7 +9,8 @@
 
 #include <forte.h>
 #include <System.h>
-#include <PhysicsComponent.h>
+
+class FPhysics;
 
 class PhysicsSystem : public FSystem
 {

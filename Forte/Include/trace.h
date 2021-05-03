@@ -49,11 +49,10 @@ class TraceLogger
 
       Trace(Severity sev, std::ofstream *file) : m_sev(sev), m_file(file) {}
 
-      template <typename T>
-      Trace operator<<(const T &rhs) const
+      void Log(const std::string& message) const
       {
         if (TraceLogger::Instance()->GetMinSeverity() > m_sev)
-          return *this;
+          return;
 
         std::stringstream log_message;
 
@@ -76,15 +75,10 @@ class TraceLogger
         }
 
         // Add message
-        log_message << rhs;
-
-        
+        log_message << message;
 
         std::cout << log_message.str() << std::endl;
         *m_file << log_message.str() << std::endl;
-
-        return *this;
-
       }
 
       private:

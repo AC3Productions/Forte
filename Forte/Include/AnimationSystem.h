@@ -9,7 +9,8 @@
 
 #include <forte.h>
 #include <System.h>
-#include <AnimationComponent.h>
+
+class FAnimation;
 
 class AnimationSystem : public FSystem
 {
@@ -20,9 +21,8 @@ class AnimationSystem : public FSystem
     void Update(float dt) override;
     ~AnimationSystem();
 
-    // Optional: If this system manages a component,
-    // then it should be responsible for creating and
-    // destroying them. Not all systems do this.
+    // Creates an instance of Animation Component that will immediately 
+    // start running in the game.
     FAnimation* CreateComponent();
     void DestroyComponent(FAnimation*& animation);
 

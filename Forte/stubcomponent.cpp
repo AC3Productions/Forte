@@ -1,16 +1,39 @@
-// file:   stub.cpp
+// file:   stubcomponent.cpp
 // author: Alfaroh Corney III
 // date:   1/31/2021
 // 
 // info:
 //   Description of the purpose of the file goes here.
 #pragma once
-#include <stub.h>
+#include <stubcomponent.h>
+#include <StubSystem.h>
 
-// Brief explanation of function. If this function is not explained in the header file,
-// it should have a full description block.
-int function(int param1, int param2)
+FStub::FStub() : FComponent(FComponent::Type::CT_FInvalid)
 {
-  return 0;
+
 }
 
+void FStub::Update(float dt)
+{
+
+}
+
+void FStub::Render()
+{
+
+}
+
+// This method NEEDS to be updated if your class 
+// has dynamic memory allocation.
+FStub* FStub::Clone()
+{
+
+  FStub* new_stub = StubSystem::Instance()->CreateComponent();
+  // no allocated data, so shallow copy works fine
+  if (new_stub)
+  {
+    *new_stub = *this;
+  }
+  return new_stub;
+
+}

@@ -20,10 +20,11 @@ TraceLogger *TraceLogger::Instance()
   return s_instance;
 }
 
-TraceLogger::TraceLogger() : m_log_file("trace.log"), verbose(Trace::Severity::S_VERBOSE, &m_log_file),
+TraceLogger::TraceLogger() : m_log_file("trace.log"), 
+                             verbose(Trace::Severity::S_VERBOSE, &m_log_file),
                              info(Trace::Severity::S_INFO, &m_log_file), 
                              warning(Trace::Severity::S_INFO, &m_log_file), 
-                             error(Trace::Severity::S_INFO, &m_log_file), m_min_severity(Trace::Severity::S_INFO)
+                             error(Trace::Severity::S_INFO, &m_log_file), 
+                             m_min_severity(Trace::Severity::S_INFO)
 {
-  
 }

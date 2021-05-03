@@ -22,6 +22,9 @@
     <Filter Include="Engine\Component">
       <UniqueIdentifier>{d1eaf6f4-c87f-4ccc-b046-8f26a2b1fbea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Stubs">
+      <UniqueIdentifier>{5be41baa-54f3-462b-a021-da0657f212ef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Engine.cpp">
@@ -66,6 +69,15 @@
     </ClCompile>
     <ClCompile Include="Source\GameObjectSystem.cpp">
       <Filter>Engine\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="stub.cpp">
+      <Filter>Stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="stubcomponent.cpp">
+      <Filter>Stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="StubSystem.cpp">
+      <Filter>Stubs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +131,15 @@
     </ClInclude>
     <ClInclude Include="Include\GameObjectSystem.h">
       <Filter>Engine\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="StubSystem.h">
+      <Filter>Stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="stub.h">
+      <Filter>Stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="stubcomponent.h">
+      <Filter>Stubs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

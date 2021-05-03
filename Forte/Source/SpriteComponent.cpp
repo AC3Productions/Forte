@@ -7,9 +7,24 @@
 #pragma once
 #include <SpriteComponent.h>
 #include <GameObject.h>
+#include <SpriteSystem.h>
 
-FSprite::FSprite() : FComponent(FComponent::Type::CT_FSprite), m_alpha(1.0f), m_frame(0), m_texture(nullptr), m_text(nullptr)
+FSprite::FSprite() : FComponent(FComponent::Type::CT_FSprite), m_alpha(1.0f), m_frame(0), m_texture(nullptr)
 {
+}
+
+FSprite* FSprite::Clone()
+{
+  FSprite* new_sprite = SpriteSystem::Instance()->CreateComponent();
+  // no allocated data, so shallow copy works fine
+  // Note: Shallow copy of m_texture is fine, since it is/will be
+  // a pointer to a texture stored in the Texture Atlas
+  // ie. the textures will always outlast the objects.
+  if (new_sprite)
+  {
+    *new_sprite = *this;
+  }
+  return new_sprite;
 }
 
 void FSprite::Render()
@@ -40,7 +55,7 @@ void FSprite::SetFrame(int frame)
 {
   if (!m_texture)
   {
-    trace.error << "Trying to set the frame of a sprite which has no texture.";
+    trace.error.Log("Trying to set the frame of a sprite which has no texture.");
     return;
   }
 

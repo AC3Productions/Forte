@@ -25,6 +25,8 @@ class FPhysics : public FComponent
     const RVec2& GetAcceleration() const { return m_velocity; }
     void SetAcceleration(const RVec2& vel) { m_velocity = vel; }
 
+    FPhysics* Clone() override;
+
   private:
     RVec2 m_velocity;
     RVec2 m_acceleration;

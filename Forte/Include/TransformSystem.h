@@ -10,7 +10,8 @@
 
 #include <forte.h>
 #include <System.h>
-#include <TransformComponent.h>
+
+class FTransform;
 
 class TransformSystem : public FSystem
 {

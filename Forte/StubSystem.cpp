@@ -6,6 +6,7 @@
 //   Description of the purpose of the file goes here.
 #pragma once
 #include <StubSystem.h>
+#include <stubcomponent.h>
 
 StubSystem* StubSystem::m_instance = nullptr;
 
@@ -27,26 +28,26 @@ void StubSystem::Init()
 {
 }
 
-// FStub* StubSystem::CreateComponent()
-// {
-//   FStub* new_comp = new FStub;
-//   m_components.push_back(new_comp);
-//   return new_comp;
-// }
-// 
-// void StubSystem::DestroyComponent(FStub*& Stub)
-// {
-//   // Find the object and destroy it
-//   for (auto it : m_components)
-//   {
-//     if (it == Stub)
-//     {
-//       delete it;
-//       it = nullptr;
-//       Stub = nullptr;
-//     }
-//   }
-// }
+FStub* StubSystem::CreateComponent()
+{
+  FStub* new_comp = new FStub;
+  m_components.push_back(new_comp);
+  return new_comp;
+}
+
+void StubSystem::DestroyComponent(FStub*& Stub)
+{
+  // Find the object and destroy it
+  for (auto it : m_components)
+  {
+    if (it == Stub)
+    {
+      delete it;
+      it = nullptr;
+      Stub = nullptr;
+    }
+  }
+}
 
 void StubSystem::Update(float dt)
 {

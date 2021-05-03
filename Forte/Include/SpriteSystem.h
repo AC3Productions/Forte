@@ -9,7 +9,8 @@
 
 #include <forte.h>
 #include <System.h>
-#include <SpriteComponent.h>
+
+class FSprite;
 
 class SpriteSystem : public FSystem
 {
