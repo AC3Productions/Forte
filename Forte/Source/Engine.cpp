@@ -11,6 +11,7 @@
 #include <SpriteSystem.h>
 #include <AnimationSystem.h>
 #include <GameObjectSystem.h>
+#include <TextureAtlas.h>
 
 #include <fstream>
 #include <json.hpp>
@@ -45,11 +46,13 @@ void Engine::Init()
   m_systems.push_back(TransformSystem::Instance());
   m_systems.push_back(SpriteSystem::Instance());
   m_systems.push_back(GameObjectSystem::Instance());
+  m_systems.push_back(TextureAtlas::Instance());
 
 
 #pragma region temp
   // This is more or less how an object will be generated.
   obj = GameObjectSystem::Instance()->CreateFromTemplate("test_obj");
+  // This will get called in behaviors/scripting.
   obj->Get(FAnimation)->Start();
 #pragma endregion
 

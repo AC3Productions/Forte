@@ -6,7 +6,7 @@
   },
   "physics": true,
   "sprite": {
-    "texture": "gem_spin.json"
+    "texture": "gem_spin"
   },
   "animation": {
     "framecount": 12,

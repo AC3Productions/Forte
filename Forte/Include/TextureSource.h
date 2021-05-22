@@ -24,6 +24,8 @@ struct TextureSource
   TextureSource(const char* image, unsigned rows = 1, unsigned cols = 1);
 
   void UpdateWindow(int index);
+
+  ~TextureSource() {}
 };
 
 

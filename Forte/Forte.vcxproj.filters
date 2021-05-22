@@ -76,8 +76,11 @@
     <ClCompile Include="stubcomponent.cpp">
       <Filter>Stubs</Filter>
     </ClCompile>
-    <ClCompile Include="StubSystem.cpp">
+    <ClCompile Include="stubsystem.cpp">
       <Filter>Stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TextureAtlas.cpp">
+      <Filter>Engine\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,7 +135,7 @@
     <ClInclude Include="Include\GameObjectSystem.h">
       <Filter>Engine\Game Objects</Filter>
     </ClInclude>
-    <ClInclude Include="StubSystem.h">
+    <ClInclude Include="stubsystem.h">
       <Filter>Stubs</Filter>
     </ClInclude>
     <ClInclude Include="stub.h">
@@ -140,6 +143,9 @@
     </ClInclude>
     <ClInclude Include="stubcomponent.h">
       <Filter>Stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TextureAtlas.h">
+      <Filter>Engine\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

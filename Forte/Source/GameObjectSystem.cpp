@@ -14,12 +14,11 @@
 #include <TransformSystem.h>
 #include <SpriteSystem.h>
 #include <AnimationSystem.h>
+#include <TextureAtlas.h>
 
 #pragma region temp
 static const int SCREEN_WIDTH = 1600;
 static const int SCREEN_HEIGHT = 900;
-
-TextureSource* texture = nullptr;
 #pragma endregion
 
 GameObjectSystem* GameObjectSystem::m_instance = nullptr;
@@ -74,10 +73,6 @@ GameObjectSystem::~GameObjectSystem()
   {
     delete it.second;
   }
-
-#pragma region temp
-  delete texture;
-#pragma endregion
 }
 
 // Creates an empty (but usable) game object with given name and returns it.
@@ -157,11 +152,12 @@ void GameObjectSystem::DeserializeGameObject(GameObject* obj, const JSON& data)
     transform->SetScale(RVec2(data["transform"]["scale"][0], data["transform"]["scale"][1]));
     obj->Add(transform);
   }
-  /* STILL HARDCODED--REQUIRES TEXTURE ATLAS DESERIALIZATION */
   if (data.contains("sprite"))
   {
     FSprite* sprite = SpriteSystem::Instance()->CreateComponent();
-    texture = new TextureSource("Assets/gem_spin.png", 3, 5);
+
+    TextureSource* texture = TextureAtlas::Instance()->GetTexture(data["sprite"]["texture"]);
+    
     sprite->SetTextureSource(texture);
     obj->Add(sprite);
   }

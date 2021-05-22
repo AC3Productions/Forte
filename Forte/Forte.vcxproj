@@ -179,13 +179,14 @@ xcopy "$(SolutionDir)Assets" "$(OutDir)Assets" /Y /S /I</Command>
     <ClCompile Include="Source\PhysicsSystem.cpp" />
     <ClCompile Include="Source\SpriteComponent.cpp" />
     <ClCompile Include="Source\SpriteSystem.cpp" />
+    <ClCompile Include="Source\TextureAtlas.cpp" />
     <ClCompile Include="Source\TextureSource.cpp" />
     <ClCompile Include="source\trace.cpp" />
     <ClCompile Include="Source\TransformComponent.cpp" />
     <ClCompile Include="Source\TransformSystem.cpp" />
     <ClCompile Include="stub.cpp" />
     <ClCompile Include="stubcomponent.cpp" />
-    <ClCompile Include="StubSystem.cpp" />
+    <ClCompile Include="stubsystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\AnimationComponent.h" />
@@ -201,13 +202,14 @@ xcopy "$(SolutionDir)Assets" "$(OutDir)Assets" /Y /S /I</Command>
     <ClInclude Include="Include\SpriteComponent.h" />
     <ClInclude Include="Include\SpriteSystem.h" />
     <ClInclude Include="include\System.h" />
+    <ClInclude Include="Include\TextureAtlas.h" />
     <ClInclude Include="Include\TextureSource.h" />
     <ClInclude Include="include\trace.h" />
     <ClInclude Include="Include\TransformComponent.h" />
     <ClInclude Include="Include\TransformSystem.h" />
     <ClInclude Include="stub.h" />
     <ClInclude Include="stubcomponent.h" />
-    <ClInclude Include="StubSystem.h" />
+    <ClInclude Include="stubsystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
