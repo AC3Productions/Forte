@@ -1,6 +1,6 @@
 // file:   stubcomponent.cpp
 // author: Alfaroh Corney III
-// date:   1/31/2021
+// date:   00/00/0000
 // 
 // info:
 //   Description of the purpose of the file goes here.

@@ -1,0 +1,11 @@
+{
+  "transform": {
+    "position": [ -75, 60 ],
+    "rotation": 0,
+    "scale": [ 1, 1 ]
+  },
+  "sprite": {
+    "texture": "red_ball",
+    "UI": false
+  }
+}

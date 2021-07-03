@@ -9,8 +9,13 @@
 
 #include <forte.h>
 #include <System.h>
+#include <Camera.h>
+
+#define TRUE_WIDTH 320
+#define TRUE_HEIGHT 180
 
 class FSprite;
+
 
 class SpriteSystem : public FSystem
 {
@@ -22,11 +27,16 @@ class SpriteSystem : public FSystem
     void Render() override;
     ~SpriteSystem();
 
-    // Optional: If this system manages a component,
-    // then it should be responsible for creating and
-    // destroying them. Not all systems do this.
+    float GetWindowScale() { return m_world_to_window; }
+
+    // Creates a sprite component and adds it to the managed list of sprites.
     FSprite* CreateComponent();
+    
+    // Removes a sprite component from the active list.
     void DestroyComponent(FSprite*& sprite);
+
+    // Get the camera, to modify its position and zoom.
+    FCamera* GetCamera() { return m_camera->Instance(); }
 
   private:
     // These are for the singleton pattern.
@@ -37,6 +47,14 @@ class SpriteSystem : public FSystem
 
     // If managing components, store a vector of components
     std::vector<FSprite*> m_components;
+
+    // World to window resolution scale
+    // The world's screen dimensions are TRUE_WIDTH x TRUE_HEIGHT
+    float m_world_to_window = 1.0f;
+
+    // The camera data (position, zoom).
+    FCamera* m_camera;
+
 };
 
 #endif

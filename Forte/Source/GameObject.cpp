@@ -7,7 +7,7 @@
 #pragma once
 #include <GameObject.h>
 
-GameObject::GameObject(const std::string& name) : m_name(name), m_persistent(false)
+GameObject::GameObject(const std::string& name) : m_name(name), m_persistent(false), m_enabled(true)
 {
   for (int i = 0; i < (int)FComponent::Type::CT_FCount; ++i)
   {
@@ -28,7 +28,10 @@ GameObject::~GameObject()
   // need to come back to this.
   for (auto it : m_components)
   {
-    it->SetParent(nullptr);
+    if (it)
+    {
+      it->SetParent(nullptr);
+    }
   }
 
 }

@@ -25,13 +25,17 @@ class TextureAtlas : public FSystem
     //
     // Inputs:
     // -filename 
-    //   The name of the texture's json file. Do NOT include the path OR file extension.
-    //   Example: "Assets/mytexture.json" should be passed in as "mytexture".
+    //   The name of the texture's json file. Do NOT include the path up to the Assets directory, OR the file extension.
+    //   Example: "Assets/player/mytexture.json" should be passed in as "player/mytexture".
     //
     // Output:
     //   If the texture exists, returns the texturesource. Otherwise,
     //   returns nullptr.
     TextureSource* GetTexture(const std::string& name);
+
+    // Details:
+    //  Unloads all currently loaded textures.
+    void FlushTextures();
 
   private:
     // These are for the singleton pattern.

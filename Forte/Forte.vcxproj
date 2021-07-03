@@ -135,7 +135,7 @@ xcopy "$(SolutionDir)Assets" "$(OutDir)Assets\" /Y /S</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)Include;$(SolutionDir)..\Libraries\raylib\src;$(SolutionDir)..\Libraries\raylib-cpp\include;$(SolutionDir)..\Libraries\json\single_include\nlohmann;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)Include;$(SolutionDir)..\Libraries\raylib\src;$(SolutionDir)..\Libraries\raylib-cpp\include;$(SolutionDir)..\Libraries\json\single_include\nlohmann;$(SolutionDir)..\Libraries\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GRAPHICS_API_OPENGL_33;PLATFORM_DESKTOP;</PreprocessorDefinitions>
       <CompileAs>Default</CompileAs>
       <WarningLevel>Level3</WarningLevel>
@@ -152,7 +152,7 @@ xcopy "$(SolutionDir)Assets" "$(OutDir)Assets" /Y /S /I</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)Include;$(SolutionDir)..\Libraries\raylib\src;$(SolutionDir)..\Libraries\raylib-cpp\include;$(SolutionDir)..\Libraries\json\single_include\nlohmann;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)Include;$(SolutionDir)..\Libraries\raylib\src;$(SolutionDir)..\Libraries\raylib-cpp\include;$(SolutionDir)..\Libraries\json\single_include\nlohmann;$(SolutionDir)..\Libraries\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GRAPHICS_API_OPENGL_33;PLATFORM_DESKTOP;</PreprocessorDefinitions>
       <CompileAs>Default</CompileAs>
       <WarningLevel>Level3</WarningLevel>
@@ -168,6 +168,7 @@ xcopy "$(SolutionDir)Assets" "$(OutDir)Assets" /Y /S /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Source\AnimationComponent.cpp" />
     <ClCompile Include="Source\AnimationSystem.cpp" />
     <ClCompile Include="source\Engine.cpp" />
@@ -184,11 +185,13 @@ xcopy "$(SolutionDir)Assets" "$(OutDir)Assets" /Y /S /I</Command>
     <ClCompile Include="source\trace.cpp" />
     <ClCompile Include="Source\TransformComponent.cpp" />
     <ClCompile Include="Source\TransformSystem.cpp" />
+    <ClCompile Include="Source\WindowSystem.cpp" />
     <ClCompile Include="stub.cpp" />
     <ClCompile Include="stubcomponent.cpp" />
     <ClCompile Include="stubsystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Include\AnimationComponent.h" />
     <ClInclude Include="Include\AnimationSystem.h" />
     <ClInclude Include="Include\Component.h" />
@@ -207,6 +210,7 @@ xcopy "$(SolutionDir)Assets" "$(OutDir)Assets" /Y /S /I</Command>
     <ClInclude Include="include\trace.h" />
     <ClInclude Include="Include\TransformComponent.h" />
     <ClInclude Include="Include\TransformSystem.h" />
+    <ClInclude Include="Include\WindowSystem.h" />
     <ClInclude Include="stub.h" />
     <ClInclude Include="stubcomponent.h" />
     <ClInclude Include="stubsystem.h" />

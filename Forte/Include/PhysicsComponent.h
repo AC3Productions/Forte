@@ -15,7 +15,8 @@ class FPhysics : public FComponent
   public:
     FPhysics() : FComponent(FComponent::Type::CT_FPhysics), 
                  m_velocity(0,0), 
-                 m_acceleration(0,0) {}
+                 m_acceleration(0,0),
+                 m_prev_position(0,0) {}
 
     void Update(float dt);
     
@@ -25,11 +26,14 @@ class FPhysics : public FComponent
     const RVec2& GetAcceleration() const { return m_velocity; }
     void SetAcceleration(const RVec2& vel) { m_velocity = vel; }
 
+    const RVec2& GetPrevPosition() const { return m_prev_position; }
+
     FPhysics* Clone() override;
 
   private:
     RVec2 m_velocity;
     RVec2 m_acceleration;
+    RVec2 m_prev_position;
 
 };
 

@@ -15,11 +15,7 @@
 #include <SpriteSystem.h>
 #include <AnimationSystem.h>
 #include <TextureAtlas.h>
-
-#pragma region temp
-static const int SCREEN_WIDTH = 1600;
-static const int SCREEN_HEIGHT = 900;
-#pragma endregion
+#include <WindowSystem.h>
 
 GameObjectSystem* GameObjectSystem::m_instance = nullptr;
 
@@ -78,6 +74,8 @@ GameObjectSystem::~GameObjectSystem()
 // Creates an empty (but usable) game object with given name and returns it.
 GameObject* GameObjectSystem::CreateGameObject(const std::string& name)
 {
+  trace.info.Log("Creating object: " + name);
+
   GameObject* new_obj = new GameObject(name);
   return new_obj;
 }
@@ -99,6 +97,7 @@ GameObject* GameObjectSystem::CreateFromTemplate(const std::string& template_nam
   // If it's not loaded yet, look for the file
   else
   {
+    trace.info.Log("Deserializing object: " + template_name);
     // Try to open the JSON file
     std::string filename = std::string("Assets/") + template_name + std::string(".json");
     std::ifstream file(filename);
@@ -147,7 +146,8 @@ void GameObjectSystem::DeserializeGameObject(GameObject* obj, const JSON& data)
   if (data.contains("transform"))
   {
     FTransform* transform = TransformSystem::Instance()->CreateComponent();
-    transform->SetPosition(RVec2(SCREEN_WIDTH * (float)data["transform"]["position"][0], SCREEN_HEIGHT * (float)data["transform"]["position"][1]));
+    transform->SetPosition(RVec2((float)data["transform"]["position"][0],
+                                 (float)data["transform"]["position"][1]));
     transform->SetRotation(data["transform"]["rotation"]);
     transform->SetScale(RVec2(data["transform"]["scale"][0], data["transform"]["scale"][1]));
     obj->Add(transform);
@@ -159,6 +159,9 @@ void GameObjectSystem::DeserializeGameObject(GameObject* obj, const JSON& data)
     TextureSource* texture = TextureAtlas::Instance()->GetTexture(data["sprite"]["texture"]);
     
     sprite->SetTextureSource(texture);
+
+    sprite->SetUI(data["sprite"]["UI"]);
+
     obj->Add(sprite);
   }
 

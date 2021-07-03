@@ -25,6 +25,9 @@
     <Filter Include="Stubs">
       <UniqueIdentifier>{5be41baa-54f3-462b-a021-da0657f212ef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Window Handling">
+      <UniqueIdentifier>{646d81d0-834f-46f9-99d9-3829c3099380}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Engine.cpp">
@@ -80,6 +83,12 @@
       <Filter>Stubs</Filter>
     </ClCompile>
     <ClCompile Include="Source\TextureAtlas.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WindowSystem.cpp">
+      <Filter>Engine\Window Handling</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
       <Filter>Engine\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
@@ -145,6 +154,12 @@
       <Filter>Stubs</Filter>
     </ClInclude>
     <ClInclude Include="Include\TextureAtlas.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\WindowSystem.h">
+      <Filter>Engine\Window Handling</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
       <Filter>Engine\Graphics</Filter>
     </ClInclude>
   </ItemGroup>

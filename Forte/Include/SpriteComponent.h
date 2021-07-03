@@ -26,16 +26,19 @@ class FSprite : public FComponent
     void SetTextureSource(TextureSource* texture);
     TextureSource* GetTextureSource() { return m_texture; }
 
+    void SetUI(bool is_ui) { m_is_ui = is_ui; }
+    bool IsUI() { return m_is_ui; }
+
     FSprite* Clone();
 
     void Render();
 
-
   private:
     float m_alpha;
     int m_frame;
-    TextureSource* m_texture; 
-    std::string m_text;
+    TextureSource* m_texture;
+
+    bool m_is_ui;
 
 };
 

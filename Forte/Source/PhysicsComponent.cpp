@@ -24,6 +24,8 @@ void FPhysics::Update(float dt)
   }
 
   RVec2 pos = transform->GetPosition();
+  // Update previous position
+  m_prev_position = pos;
 
   m_velocity += m_acceleration * dt;
   pos += m_velocity * dt;

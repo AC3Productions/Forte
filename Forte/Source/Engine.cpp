@@ -12,20 +12,17 @@
 #include <AnimationSystem.h>
 #include <GameObjectSystem.h>
 #include <TextureAtlas.h>
+#include <WindowSystem.h>
 
 #include <fstream>
 #include <json.hpp>
 using JSON = nlohmann::json;
 
 #pragma region temp
-static const int SCREEN_WIDTH = 1600;
-static const int SCREEN_HEIGHT = 900;
-
 GameObject* obj = nullptr;
-
 #pragma endregion
 
-Engine::Engine() : m_is_running(true) ,trace_log(nullptr), m_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Forte", true)
+Engine::Engine() : m_is_running(true), trace_log(nullptr)
 {
 }
 
@@ -35,10 +32,9 @@ void Engine::Init()
   trace_log = TraceLogger::Instance();
   trace.info.Log("Trace Log Initialized.");
 
-  m_window.Init(SCREEN_WIDTH, SCREEN_HEIGHT, "Forte");
-  SetTargetFPS(60);
-
   /* Initialize systems (order-dependent) */
+  m_systems.push_back(WindowSystem::Instance());
+
   m_systems.push_back(AnimationSystem::Instance());
   m_systems.push_back(PhysicsSystem::Instance());
 
@@ -48,10 +44,21 @@ void Engine::Init()
   m_systems.push_back(GameObjectSystem::Instance());
   m_systems.push_back(TextureAtlas::Instance());
 
+  for (auto it : m_systems)
+  {
+    if (it)
+      it->Init();
+  }
 
 #pragma region temp
   // This is more or less how an object will be generated.
+  // Will be in level-loading
   obj = GameObjectSystem::Instance()->CreateFromTemplate("test_obj");
+
+  GameObjectSystem::Instance()->CreateFromTemplate("test_ball0");
+  GameObjectSystem::Instance()->CreateFromTemplate("test_ball1");
+  GameObjectSystem::Instance()->CreateFromTemplate("test_ball2");
+  GameObjectSystem::Instance()->CreateFromTemplate("test_ball3");
   // This will get called in behaviors/scripting.
   obj->Get(FAnimation)->Start();
 #pragma endregion
@@ -64,31 +71,39 @@ void Engine::Update()
 {
   trace.verbose.Log("Engine: Update");
 
-  if (m_window.ShouldClose())
+  if (WindowSystem::Instance()->ShouldClose())
   {
     m_is_running = false;
     return;
   }
 
 #pragma region temp
+  
+  /* Temporary code, would be in scripts/behaviors later */
+  
+  // Move player with arrow keys
   RVec2 vel;
-  float speed = 500.0f;
-
-  // Update all systems
+  float speed = 100.0f;
+  
   if (IsKeyDown(KEY_RIGHT)) 
     vel.x += 1;
   if (IsKeyDown(KEY_LEFT)) 
     vel.x -= 1;
   if (IsKeyDown(KEY_UP)) 
-    vel.y -= 1;
-  if (IsKeyDown(KEY_DOWN)) 
     vel.y += 1;
+  if (IsKeyDown(KEY_DOWN)) 
+    vel.y -= 1;
 
   vel = vel.Normalize() * speed;
   obj->Get(FPhysics)->SetVelocity(vel);
+
+  // Update camera position
+  FCamera* camera = SpriteSystem::Instance()->GetCamera();
+  camera->SetPosition(obj->Get(FTransform)->GetPosition());
+
 #pragma endregion
   
-  float dt = m_window.GetFrameTime();
+  float dt = WindowSystem::Instance()->GetDT();
 
   // Update all the systems, in order
   for (auto it = m_systems.begin(); it != m_systems.end(); ++it)
@@ -100,13 +115,15 @@ void Engine::Update()
 void Engine::Render()
 {
   BeginDrawing();
-  ClearBackground(RAYWHITE);
+  ClearBackground(DARKBLUE);
 
   // Render all systems
   for (auto it : m_systems)
   {
     it->Render();
   }
+
+  #pragma region temp
 
   /* FPS Counter (for debugging) */
   // Small rectangle around text (white, transparent)
@@ -116,6 +133,17 @@ void Engine::Render()
   fps += std::to_string(GetFPS());
   DrawText(fps.c_str(), 5, 5, 20, BLACK);
   
+  /* Position (debug) */
+  // Small rectangle around text (white, transparent)
+  DrawRectangle(0, 25, 325, 25, Color{ 255, 255, 255, 150 });
+  // Data
+  const RVec2& pos = obj->Get(FTransform)->GetPosition();
+  std::string pos_str("Position: ");
+  pos_str += std::to_string(pos.x) + std::string(", ") + std::to_string(pos.y);
+  DrawText(pos_str.c_str(), 5, 30, 20, BLACK);
+
+  #pragma endregion
+
   EndDrawing();
 }
 
@@ -123,9 +151,10 @@ void Engine::ShutDown()
 {
   trace.info.Log("Shutting down engine...");
 
-  for (auto it : m_systems)
+  // Shut down in reverse order
+  for (auto it = m_systems.rbegin(); it != m_systems.rend(); ++it)
   {
-    delete it;
+    delete *it;
   }
 
 }

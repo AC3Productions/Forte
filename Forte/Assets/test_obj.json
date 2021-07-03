@@ -1,16 +1,17 @@
 {
   "transform": {
-    "position": [ 0.5, 0.5 ],
+    "position": [ 0, 0 ],
     "rotation": 0,
-    "scale": [ 3, 3 ]
+    "scale": [ 1, 1 ]
   },
   "physics": true,
   "sprite": {
-    "texture": "gem_spin"
+    "texture": "blue_guy",
+    "UI": false
   },
   "animation": {
-    "framecount": 12,
-    "framerate": 12.0,
+    "framecount": 5,
+    "framerate": 6.0,
     "looping": true
   }
 }

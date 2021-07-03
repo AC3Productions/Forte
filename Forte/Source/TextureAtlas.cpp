@@ -54,6 +54,9 @@ TextureSource* TextureAtlas::GetTexture(const std::string& name)
     {
       // Add to atlas
       m_textures[name] = new_texture;
+
+      trace.info.Log("Loaded texture: " + filename);
+
       // Send it out
       return new_texture;
     }
@@ -72,10 +75,19 @@ TextureSource* TextureAtlas::GetTexture(const std::string& name)
 }
 
 // Unloads all textures
-TextureAtlas::~TextureAtlas()
+void TextureAtlas::FlushTextures()
 {
   for (auto it : m_textures)
   {
     delete it.second;
   }
+
+  m_textures.clear();
+
+}
+
+// Unloads all textures
+TextureAtlas::~TextureAtlas()
+{
+  FlushTextures();
 }

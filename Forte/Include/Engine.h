@@ -32,8 +32,6 @@ private:
   TraceLogger* trace_log;
 
   /* Systems */
-  raylib::Window m_window;
-
   std::vector<FSystem*> m_systems;
 
 };

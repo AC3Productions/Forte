@@ -53,6 +53,8 @@ void SpriteSystem::Init()
 void SpriteSystem::Update(float dt)
 {
   UNREF_PARAM(dt);
+
+  m_world_to_window = static_cast<float>(GetScreenWidth()) / TRUE_WIDTH;
 }
 
 void SpriteSystem::Render()
